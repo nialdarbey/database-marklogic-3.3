@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tcp="http://www.mulesoft.org/schema/mule/tcp" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:jdbc-ee="http://www.mulesoft.org/schema/mule/ee/jdbc" xmlns:marklogic="http://www.mulesoft.org/schema/mule/marklogic" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/jdbc http://www.mulesoft.org/schema/mule/ee/jdbc/current/mule-jdbc-ee.xsd 
+http://www.mulesoft.org/schema/mule/marklogic http://www.mulesoft.org/schema/mule/marklogic/1.0/mule-marklogic.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd 
+http://www.mulesoft.org/schema/mule/tcp http://www.mulesoft.org/schema/mule/tcp/current/mule-tcp.xsd 
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd 
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd ">
+	<marklogic:config name="MarkLogicA" server="localhost" port="8888" database="documents" password="1dwc2kat" username="MarkLogic A" doc:name="MarkLogic" />
+	<jdbc-ee:derby-data-source name="Derby_Data_Source" url="jdbc:derby:[dbName]" transactionIsolation="UNSPECIFIED" doc:name="Derby Data Source" />
+	<jdbc-ee:connector name="Database" dataSource-ref="Derby_Data_Source" validateConnections="true" queryTimeout="-1" pollingFrequency="0" doc:name="Database" />
+	<marklogic:config name="MarkLogicB" server="localhost" port="8888" database="documents" password="1dwc2kat" username="nialdarbey" doc:name="MarkLogic" />
+	<flow name="SwetsFlow2" doc:name="SwetsFlow2">
+		<http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP" />
+		<marklogic:commiting-statement config-ref="MarkLogicA" adhocQuery="xh" doc:name="MarkLogic Commiting statement" />
+	</flow>
+	<flow name="Main" doc:name="Main">
+		<jdbc-ee:inbound-endpoint queryKey="select" queryTimeout="-1" pollingFrequency="100000" connector-ref="Database" doc:name="Database">
+			<jdbc-ee:transaction action="ALWAYS_BEGIN" />
+			<jdbc-ee:query key="select" value="select * from name" />
+		</jdbc-ee:inbound-endpoint>
+		<round-robin doc:name="Round Robin">
+			<set-variable variableName="server" value="MarkLogicA" doc:name="MarkLogic A" />
+			<set-variable variableName="server" value="MarkLogicB" doc:name="MarkLogic B" />
+		</round-robin>
+		<marklogic:begin-transaction config-ref="MarkLogicA" doc:name="MarkLogic Begin Transaction" />
+		<foreach doc:name="For each Record in ResultSet">
+			<marklogic:statement config-ref="#[flowVars.server]" adhocQuery="alakjsdfl" doc:name="MarkLogic Statement" />
+		</foreach>
+		<marklogic:commit-transaction config-ref="#[flowVars.server]" doc:name="MarkLogic Commit transaction" />
+		<rollback-exception-strategy doc:name="Rollback Exception Strategy">
+			<marklogic:rollback-transaction config-ref="#[flowVars.server]" doc:name="MarkLogic Rollback transaction" />
+			<on-redelivery-attempts-exceeded doc:name="Redelivery exhausted">
+				<logger level="INFO" doc:name="Logger" />
+			</on-redelivery-attempts-exceeded>
+		</rollback-exception-strategy>
+	</flow>
+</mule>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="Swets">
+    <global-unknown index="1" unknownName="MarkLogicA" description="false" entity-id="global-unknown#1">
+        <content>&lt;marklogic:config xmlns:marklogic=&quot;http://www.mulesoft.org/schema/mule/marklogic&quot; name=&quot;MarkLogicA&quot; server=&quot;localhost&quot; port=&quot;8888&quot; database=&quot;documents&quot; password=&quot;1dwc2kat&quot; username=&quot;MarkLogic A&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;MarkLogic&quot;/&gt;</content>
+    </global-unknown>
+    <global-element type="http://www.mulesoft.org/schema/mule/ee/jdbc/derby-data-source" name="Derby Data Source" entity-id="Derby Data Source#1">
+        <properties>
+            <property value="Derby_Data_Source" name="name"/>
+            <property value="2" name="auxiliary;index"/>
+            <property name="user"/>
+            <property name="password"/>
+            <property value="jdbc:derby:[dbName]" name="url"/>
+            <property value="2" name="auxiliary;index"/>
+            <property value="2" name="auxiliary;index"/>
+            <property value="UNSPECIFIED" name="transactionIsolation"/>
+            <property name="loginTimeout"/>
+            <property name="database"/>
+            <property name="create"/>
+            <property value="2" name="auxiliary;index"/>
+            <property value="2" name="auxiliary;index"/>
+            <property value="2" name="auxiliary;index"/>
+        </properties>
+    </global-element>
+    <global-element type="http://www.mulesoft.org/schema/mule/ee/jdbc/connector" name="Database" entity-id="Database#1">
+        <properties>
+            <property value="Database" name="name"/>
+            <property value="Derby_Data_Source" name="dataSource-ref to JDBC DataSource"/>
+            <property value="Derby_Data_Source" name="dataSource-ref to Bean"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property name="dispatcherPoolFactory-ref"/>
+            <property name="queryRunner-ref"/>
+            <property name="resultSetHandler-ref"/>
+            <property value="3" name="auxiliary;index"/>
+            <property name="dynamicNotification"/>
+            <property value="true" name="validateConnections"/>
+            <property name="transactionPerMessage"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="-1" name="queryTimeout"/>
+            <property value="0" name="pollingFrequency"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+            <property value="3" name="auxiliary;index"/>
+        </properties>
+    </global-element>
+    <global-unknown index="4" unknownName="MarkLogicB" description="false" entity-id="global-unknown#2">
+        <content>&lt;marklogic:config xmlns:marklogic=&quot;http://www.mulesoft.org/schema/mule/marklogic&quot; name=&quot;MarkLogicB&quot; server=&quot;localhost&quot; port=&quot;8888&quot; database=&quot;documents&quot; password=&quot;1dwc2kat&quot; username=&quot;nialdarbey&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;MarkLogic&quot;/&gt;</content>
+    </global-unknown>
+    <flow SubFlow="false" name="SwetsFlow2" entity-id="5da5410d-e670-466f-a904-c4c020bb086d">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property value="5" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="5" name="auxiliary;index"/>
+            <property value="5" name="auxiliary;index"/>
+            <property value="5" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#1">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="HTTP#1">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="request-response" name="exchange-pattern"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property name="httpLabel"/>
+                    <property value="localhost" name="host"/>
+                    <property value="8081" name="port"/>
+                    <property name="path"/>
+                    <property name="method"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property name="address"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property name="responseTimeout"/>
+                    <property name="followRedirects"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property name="user"/>
+                    <property name="password"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property name="contentType"/>
+                    <property name="keep-alive"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                    <property value="6" name="auxiliary;index"/>
+                </properties>
+            </endpoint>
+            <unknown index="7" description="false" entity-id="unknown#1">
+                <content>&lt;marklogic:commiting-statement xmlns:marklogic=&quot;http://www.mulesoft.org/schema/mule/marklogic&quot; config-ref=&quot;MarkLogicA&quot; adhocQuery=&quot;xh&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;MarkLogic Commiting statement&quot;/&gt;</content>
+            </unknown>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="Main" entity-id="87e346a6-4d3a-49be-9ffd-fce0fed8bb0f">
+        <properties>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property value="8" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="8" name="auxiliary;index"/>
+            <property value="8" name="auxiliary;index"/>
+            <property value="8" name="auxiliary;index"/>
+        </properties>
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#2">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/ee/jdbc/endpoint" name="Database" entity-id="Database#2">
+                <properties>
+                    <property value="one-way" name="exchange-pattern"/>
+                    <property name="exchange-pattern"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property name=""/>
+                    <property value="select" name="queryKey"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property name="address"/>
+                    <property name="responseTimeout"/>
+                    <property name="encoding"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="mimeType"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="-1" name="queryTimeout"/>
+                    <property value="100000" name="pollingFrequency"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="Database" name="connector-ref"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="responseTransformer-refs"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/ee/jdbc/transaction;0">
+                        <property value="ALWAYS_BEGIN" name="action"/>
+                        <property value="10" name="auxiliary;wrapIn"/>
+                        <property value="10" name="auxiliary;index"/>
+                    </property-collection>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/ee/jdbc/query;0">
+                        <property value="select * from name" name="value"/>
+                        <property value="11" name="auxiliary;wrapIn"/>
+                        <property value="11" name="auxiliary;index"/>
+                        <property value="select" name="key"/>
+                    </property-collection>
+                </properties>
+            </endpoint>
+            <splitter index="12" type="http://www.mulesoft.org/schema/mule/core/round-robin" name="Round Robin" entity-id="Round Robin#1">
+                <properties>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="12" name="auxiliary;index"/>
+                    <property value="12" name="auxiliary;index"/>
+                    <property value="12" name="auxiliary;index"/>
+                </properties>
+                <pattern type="http://www.mulesoft.org/schema/mule/core/round-robin" name="Round Robin" entity-id="Round Robin#2"/>
+                <compartment entity-id="compartment#1">
+                    <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="true" entity-id="d2366100-897d-4aaf-8301-be6a1e50edcd">
+                        <pattern type="http://www.mulesoft.org/schema/mule/core/variable-transformer" name="MarkLogic A" entity-id="Variable#1">
+                            <properties>
+<property value="http://www.mulesoft.org/schema/mule/core/set-variable" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+<property value="server" name="variableName"/>
+<property value="MarkLogicA" name="value"/>
+<property value="13" name="auxiliary;index"/>
+<property value="13" name="auxiliary;index"/>
+<property value="13" name="auxiliary;index"/>
+<property value="13" name="auxiliary;index"/>
+<property value="13" name="auxiliary;index"/>
+<property value="13" name="auxiliary;index"/>
+<property value="13" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="true" entity-id="2c3bf034-9e29-4e15-948a-5fed6b891f1a">
+                        <pattern type="http://www.mulesoft.org/schema/mule/core/variable-transformer" name="MarkLogic B" entity-id="Variable#2">
+                            <properties>
+<property value="http://www.mulesoft.org/schema/mule/core/set-variable" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+<property value="server" name="variableName"/>
+<property value="MarkLogicB" name="value"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+<property value="14" name="auxiliary;index"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </splitter>
+            <unknown index="15" description="false" entity-id="unknown#2">
+                <content>&lt;marklogic:begin-transaction xmlns:marklogic=&quot;http://www.mulesoft.org/schema/mule/marklogic&quot; config-ref=&quot;MarkLogicA&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;MarkLogic Begin Transaction&quot;/&gt;</content>
+            </unknown>
+            <scope type="http://www.mulesoft.org/schema/mule/core/foreach" name="For each Record in ResultSet" entity-id="Foreach#1">
+                <properties>
+                    <property value="16" name="auxiliary;index"/>
+                    <property name="collection"/>
+                    <property name="counterVariableName"/>
+                    <property name="batchSize"/>
+                    <property name="rootMessageVariableName"/>
+                    <property value="16" name="auxiliary;index"/>
+                    <property value="16" name="auxiliary;index"/>
+                    <property value="16" name="auxiliary;index"/>
+                </properties>
+                <compartment entity-id="compartment#2">
+                    <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#3">
+                        <unknown index="17" description="false" entity-id="unknown#3">
+                            <content>&lt;marklogic:statement xmlns:marklogic=&quot;http://www.mulesoft.org/schema/mule/marklogic&quot; config-ref=&quot;#[flowVars.server]&quot; adhocQuery=&quot;alakjsdfl&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;MarkLogic Statement&quot;/&gt;</content>
+                        </unknown>
+                    </lane>
+                </compartment>
+            </scope>
+            <unknown index="18" description="false" entity-id="unknown#4">
+                <content>&lt;marklogic:commit-transaction xmlns:marklogic=&quot;http://www.mulesoft.org/schema/mule/marklogic&quot; config-ref=&quot;#[flowVars.server]&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;MarkLogic Commit transaction&quot;/&gt;</content>
+            </unknown>
+            <scope type="http://www.mulesoft.org/schema/mule/core/rollback-exception-strategy" name="Rollback Exception Strategy" entity-id="Rollback Exception Strategy#1">
+                <properties>
+                    <property name="maxRedeliveryAttempts"/>
+                    <property name="when"/>
+                    <property name="enableNotifications"/>
+                    <property value="19" name="auxiliary;index"/>
+                    <property value="19" name="auxiliary;index"/>
+                    <property value="19" name="auxiliary;index"/>
+                </properties>
+                <compartment entity-id="compartment#3">
+                    <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#4">
+                        <scope type="http://www.mulesoft.org/schema/mule/core/!" name="Default" entity-id="Default#1">
+                            <compartment entity-id="compartment#4">
+<lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#6">
+    <unknown index="20" description="false" entity-id="unknown#5">
+        <content>&lt;marklogic:rollback-transaction xmlns:marklogic=&quot;http://www.mulesoft.org/schema/mule/marklogic&quot; config-ref=&quot;#[flowVars.server]&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;MarkLogic Rollback transaction&quot;/&gt;</content>
+    </unknown>
+</lane>
+                            </compartment>
+                        </scope>
+                        <scope type="http://www.mulesoft.org/schema/mule/core/on-redelivery-attempts-exceeded" name="Redelivery exhausted" entity-id="Redelivery exhausted#1">
+                            <properties>
+<property value="21" name="auxiliary;index"/>
+                            </properties>
+                            <compartment entity-id="compartment#5">
+<lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#5">
+    <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#1">
+        <properties>
+            <property name="message"/>
+            <property value="INFO" name="level"/>
+            <property name="category"/>
+            <property value="22" name="auxiliary;index"/>
+            <property value="22" name="auxiliary;index"/>
+            <property value="22" name="auxiliary;index"/>
+        </properties>
+    </pattern>
+</lane>
+                            </compartment>
+                        </scope>
+                    </lane>
+                </compartment>
+            </scope>
+        </lane>
+    </flow>
+</mule-configuration>
